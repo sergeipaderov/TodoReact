@@ -4,7 +4,7 @@ const todos = [
         title: 'Study JavaScript',
         completed: true
     },
-     {
+/*     {
         id: 2,
         title: 'Study React',
         completed: false
@@ -13,7 +13,7 @@ const todos = [
         id: 3,
         title: 'Create App',
         completed: false
-    },
+    },*/
 ];
 
 export default todos;

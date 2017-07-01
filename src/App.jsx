@@ -14,10 +14,19 @@ class App extends React.Component {
             todos: this.props.initialData
         };
 
+        console.log('constructor');
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+    }
+
+    componentWillMount() {
+        console.log('componentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount');
     }
 
     nextId() {
@@ -68,6 +77,7 @@ class App extends React.Component {
     }
 
     render() {
+        console.log('render');
         return (
             <main>
                 <Header title = {this.props.title} todos = {this.state.todos} />
