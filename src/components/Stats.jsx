@@ -11,15 +11,15 @@ function Stats(props) {
             <tbody>
                 <tr>
                     <th>All :</th>
-                    <tb>{total}</tb>
+                    <td>{total}</td>
                 </tr>
                 <tr>
                     <th>Done :</th>
-                    <tb>{completed}</tb>
+                    <td>{completed}</td>
                 </tr>
                 <tr>
                     <th>Left :</th>
-                    <tb>{notCompleted}</tb>
+                    <td>{notCompleted}</td>
                 </tr>
             </tbody>
         </table>
