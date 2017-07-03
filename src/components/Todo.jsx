@@ -14,7 +14,15 @@ class Todo extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.editing)  {
+            this.refs.title.focus();
+            this.refs.title.select();
+        }
+    }
+
+    /*
+        componentWillReceiveProps(nextProps) {
         console.log('componentWillReceiveProps');
         console.log('nextProps', nextProps);
     }
@@ -42,6 +50,7 @@ class Todo extends React.Component {
     componentWillUnmount() {
         console.log('componentWillUnmount');
     }
+    */
 
     handleSubmit(event) {
         event.preventDefault();
@@ -74,7 +83,7 @@ class Todo extends React.Component {
     }
 
     render() {
-        console.log('render');
+        
         return this.state.editing ? this.renderForm() : this.renderDisplay();
     }
 }
