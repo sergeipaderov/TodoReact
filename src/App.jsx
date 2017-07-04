@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'; 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import todos from './todos';
 import Header from './components/Header';
@@ -76,19 +77,28 @@ class App extends React.Component {
             <main>
                 <Header title = {this.props.title} todos = {this.state.todos} />
 
-                <section className="todo-list">
-                    {this.state.todos.map(todo => 
-                        <Todo 
-                            key = {todo.id} 
-                            id = {todo.id}
-                            title = {todo.title} 
-                            completed = {todo.completed} 
-                            onStatusChange = {this.handleStatusChange} 
-                            onDelete = {this.handleDelete}
-                            onEdit = {this.handleEdit}
-                            />)
-                    }
-                </section>
+                <ReactCSSTransitionGroup
+                    component="section" 
+                    className="todo-list"
+                    transitionName="slide"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={true}
+                    transitionLeave={true}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}>
+                        {this.state.todos.map(todo => 
+                            <Todo 
+                                key = {todo.id} 
+                                id = {todo.id}
+                                title = {todo.title} 
+                                completed = {todo.completed} 
+                                onStatusChange = {this.handleStatusChange} 
+                                onDelete = {this.handleDelete}
+                                onEdit = {this.handleEdit}
+                                />)
+                        }
+                </ReactCSSTransitionGroup>
 
                 <Form onAdd = {this.handleAdd} />
 
