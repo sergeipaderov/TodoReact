@@ -1,19 +1,19 @@
 const todos = [
     {
         id: 1,
-        title: 'Study JavaScript',
+        title: 'Изучить JavaScript',
         completed: true
     },
-     {
+    {
         id: 2,
-        title: 'Study React',
+        title: 'Изучить React',
         completed: false
     },
-     {
+    {
         id: 3,
-        title: 'Create App',
+        title: 'Написать приложение',
         completed: false
-    },
+    }
 ];
 
 export default todos;
