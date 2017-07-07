@@ -14,47 +14,10 @@ class Todo extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.editing)  {
-            this.refs.title.focus();
-            this.refs.title.select();
-        }
-    }
-
-    /*
-        componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps');
-        console.log('nextProps', nextProps);
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-        console.log('componentWillUpdate');
-        console.log('nextProps', nextProps);
-        console.log('nextState', nextState);
-
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('componentWillUpdate');
-        console.log('nextProps', nextProps);
-        console.log('nextState', nextState);
-        return false;
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        console.log('componentDidUpdate');
-        console.log('prevProps', prevProps);
-        console.log('prevState', prevState);
-    }
-    
-    componentWillUnmount() {
-        console.log('componentWillUnmount');
-    }
-    */
-
     handleSubmit(event) {
         event.preventDefault();
-        let title = this.refs.title.value;
+
+        const title = this.refs.title.value;
 
         this.props.onEdit(this.props.id, title);
         this.setState({ editing: false });
@@ -62,28 +25,27 @@ class Todo extends React.Component {
 
     renderDisplay() {
         return (
-            <div className={`todo${this.props.completed ? ' completed' : ' '}`}>
-                <Checkbox checked = {this.props.completed} onChange={() => this.props.onStatusChange(this.props.id)} />
+            <div className={`todo${this.props.completed ? ' completed' : ''}`}>
+                <Checkbox checked={this.props.completed} onChange={() => this.props.onToggle(this.props.id)} />
 
                 <span className="todo-title">{this.props.title}</span>
-            
+
                 <Button className="edit icon" icon="edit" onClick={() => this.setState({ editing: true })} />
-                <Button className = "delete icon" icon = "delete" onClick = {() => this.props.onDelete(this.props.id)} />
-            </div>       
+                <Button className="delete icon" icon="delete" onClick={() => this.props.onDelete(this.props.id)} />
+            </div>
         );
     }
 
     renderForm() {
-        return ( 
-            <form  className="todo-edit-form" onSubmit = {this.handleSubmit}>
-                <input type="text" ref="title" defaultValue = {this.props.title} />
+        return (
+            <form className="todo-edit-form" onSubmit={this.handleSubmit}>
+                <input type="text" ref="title" defaultValue={this.props.title} />
                 <Button className="save icon" icon="save" type="submit" />
             </form>
         );
     }
 
     render() {
-        
         return this.state.editing ? this.renderForm() : this.renderDisplay();
     }
 }
@@ -91,8 +53,8 @@ class Todo extends React.Component {
 Todo.propTypes = {
     title: React.PropTypes.string.isRequired,
     completed: React.PropTypes.bool.isRequired,
-    onStatusChange: React.PropTypes.func.isRequired,
     onDelete: React.PropTypes.func.isRequired,
+    onToggle: React.PropTypes.func.isRequired,
     onEdit: React.PropTypes.func.isRequired
 };
 
